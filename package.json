@@ -1,0 +1,32 @@
+{
+  "name": "pay-wallet-client",
+  "version": "1.0.0",
+  "description": "NodeJS client for PayApi Ltd wallets.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/payapi/pay-wallet-client.git"
+  },
+  "keywords": [
+    "Wallet",
+    "EUR",
+    "USD",
+    "ICO",
+    "Cryptocurrencies",
+    "Partial",
+    "Payments"
+  ],
+  "author": "PayApi DevTeam <devteam@payapi.io> (https://payapi.io/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/payapi/pay-wallet-client/issues"
+  },
+  "homepage": "https://github.com/payapi/pay-wallet-client#readme",
+  "dependencies": {
+    "debug": "^3.1.0",
+    "request-promise": "^4.2.2"
+  }
+}
