@@ -4,12 +4,13 @@
   var debug = require('debug')('pay-wallet:client');
 
   module.exports = function PayWalletClient(params) {
+    var brandId = params.brandId;
     var uri = params.uri;
     var authorizationToken = params.authorizationToken;
     var agentOptions = params.agentOptions;
     var headers = {
       'Content-Type' : 'application/json',
-      'Authorization' : 'Bearer '+ authorizationToken
+      'Authorization' : 'Bearer ' + authorizationToken
     };
 
     if(params.headers) { // merge normal headers with extended headers
@@ -257,7 +258,17 @@
         return get(pathAndQuerystring)
           .then(handleResponse)
           .catch(handleError);
-      }
+      },
+      getBrand: function(brandUuid) {
+        return get('/v1/brands/' + brandUuid)
+          .then(handleResponse)
+          .catch(handleError);
+      },
+      postBrand: function(brand) {
+        return post('/v1/brands')
+          .then(handleResponse)
+          .catch(handleError);
+      },
     };
   };
 }());
