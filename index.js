@@ -88,12 +88,13 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      register: function(username, password, passwordConfirmation, wallets) {
+      register: function(username, password, passwordConfirmation, wallets, brandUuid) {
         var body = {
           username: username,
           password: password,
           passwordConfirmation: passwordConfirmation,
-          wallets: wallets
+          wallets: wallets,
+          brandUuid: brandUuid
         };
         return post('/register', body)
           .then(handleResponse)
@@ -104,25 +105,28 @@
           provider: loginParams.provider,
           username: loginParams.username,
           password: loginParams.password,
-          clientToken: loginParams.clientToken
+          clientToken: loginParams.clientToken,
+          brandUuid: loginParams.brandUuid
         };
         return post('/login', body)
           .then(handleResponse)
           .catch(handleError);
       },
-      forgot: function(username) {
+      forgot: function(username, brandUuid) {
         var body = {
-          username: username
+          username: username,
+          brandUuid: brandUuid
         };
         return post('/forgot', body)
           .then(handleResponse)
           .catch(handleError);
       },
-      reset: function(password, passwordConfirmation, resetPasswordToken) {
+      reset: function(password, passwordConfirmation, resetPasswordToken, brandUuid) {
         var body = {
           password: password,
           passwordConfirmation: passwordConfirmation,
-          resetPasswordToken: resetPasswordToken
+          resetPasswordToken: resetPasswordToken,
+          brandUuid: brandUuid
         };
 
         return post('/reset', body)
