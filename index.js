@@ -67,9 +67,9 @@
       delete err.request;
       debug('handleError() err=%O', err);
       debug('err.statusCode: %s, err.options.uri: %s, err.options.method: %s',
-          err.statusCode === 409, err.options.uri.match(/v1\/users/g), err.options.method === 'POST');
+          err.statusCode === 409, err.options.uri.match(/users/g), err.options.method === 'POST');
       if(err.statusCode === 409 &&
-          err.options && err.options.uri && err.options.uri.match(/v1\/users/g) &&
+          err.options && err.options.uri && err.options.uri.match(/users/g) &&
           err.options && err.options.method && err.options.method === 'POST') {
         return Promise.reject({message: err.message, statusCode: err.statusCode, isRecoverableError: false});
       } else {
@@ -84,7 +84,7 @@
           password: password,
           passwordConfirmation: passwordConfirmation
         };
-        return post('/v1/users', body)
+        return post('/users', body)
           .then(handleResponse)
           .catch(handleError);
       },
@@ -95,7 +95,7 @@
           passwordConfirmation: passwordConfirmation,
           wallets: wallets
         };
-        return post('/v1/register', body)
+        return post('/register', body)
           .then(handleResponse)
           .catch(handleError);
       },
@@ -106,7 +106,7 @@
           password: loginParams.password,
           clientToken: loginParams.clientToken
         };
-        return post('/v1/login', body)
+        return post('/login', body)
           .then(handleResponse)
           .catch(handleError);
       },
@@ -114,7 +114,7 @@
         var body = {
           username: username
         };
-        return post('/v1/forgot', body)
+        return post('/forgot', body)
           .then(handleResponse)
           .catch(handleError);
       },
@@ -125,7 +125,7 @@
           resetPasswordToken: resetPasswordToken
         };
 
-        return post('/v1/reset', body)
+        return post('/reset', body)
           .then(handleResponse)
           .catch(handleError);
       },
@@ -134,7 +134,7 @@
           currency: currency,
           type: 'credit'
         }];
-        return post('/v1/users/' + userUuid + '/wallets', body)
+        return post('/users/' + userUuid + '/wallets', body)
           .then(handleResponse)
           .catch(handleError);
       },
@@ -143,52 +143,52 @@
           currency: currency,
           type: 'debit'
         };
-        return post('/v1/users/' + userUuid + '/wallets', body)
+        return post('/users/' + userUuid + '/wallets', body)
           .then(handleResponse)
           .catch(handleError);
       },
       getOrCreateWalletByCurrency:  function(userUuid, currency) {
-        return post('/v1/users/' + userUuid + '/wallet/'+currency, {})
+        return post('/users/' + userUuid + '/wallet/'+currency, {})
           .then(handleResponse)
           .catch(handleError);
       },
       createWallets: function(userUuid, wallets) {
-        return post('/v1/users/' + userUuid + '/wallets', wallets)
+        return post('/users/' + userUuid + '/wallets', wallets)
           .then(handleResponse)
           .catch(handleError);
       },
       getWallets: function(userUuid) {
-        return get('/v1/users/' + userUuid + '/wallets')
+        return get('/users/' + userUuid + '/wallets')
           .then(handleResponse)
           .catch(handleError);
       },
       getUserWallet: function(userUuid, walletUuid) {
-        return get('/v1/users/' + userUuid + '/wallets/' + walletUuid)
+        return get('/users/' + userUuid + '/wallets/' + walletUuid)
           .then(handleResponse)
           .catch(handleError);
       },
       getUser: function(userUuid) {
-        return get('/v1/users/'+userUuid)
+        return get('/users/'+userUuid)
           .then(handleResponse)
           .catch(handleError);
       },
       getWallet: function(walletUuid) {
-        return get('/v1/wallets/' + walletUuid)
+        return get('/wallets/' + walletUuid)
           .then(handleResponse)
           .catch(handleError);
       },
       getTransactions: function() {
-        return get('/v1/transactions')
+        return get('/transactions')
           .then(handleResponse)
           .catch(handleError);
       },
       getWalletTransactions: function(userUuid, walletUuid) {
-        return get('/v1/users/' + userUuid + '/wallets/' + walletUuid + '/transactions')
+        return get('/users/' + userUuid + '/wallets/' + walletUuid + '/transactions')
           .then(handleResponse)
           .catch(handleError);
       },
       getUserTransactions: function(userUuid, direction) {
-        var path = '/v1/users/' + userUuid + '/transactions';
+        var path = '/users/' + userUuid + '/transactions';
         if(direction === 'incoming' || direction === 'outgoing') {
           path = path + '?direction=' + direction;
         }
@@ -197,17 +197,17 @@
           .catch(handleError);
       },
       findOrCreateByUsername: function(username) {
-        return post('/v1/users/findByUsername/' + username, {})
+        return post('/users/findByUsername/' + username, {})
           .then(handleResponse)
           .catch(handleError);
       },
       findByUsername: function(username) {
-        return get('/v1/users/findByUsername/' + username, {})
+        return get('/users/findByUsername/' + username, {})
           .then(handleResponse)
           .catch(handleError);
       },
       getTransaction: function(transactionUuid) {
-        return get('/v1/transactions/' + transactionUuid)
+        return get('/transactions/' + transactionUuid)
           .then(handleResponse)
           .catch(handleError);
       },
@@ -217,7 +217,7 @@
           currency: currency,
           reference: reference
         };
-        return post('/v1/users/' + userUuid + '/wallets/' + walletUuid + '/deposit', body)
+        return post('/users/' + userUuid + '/wallets/' + walletUuid + '/deposit', body)
           .then(handleResponse)
           .catch(handleError);
       },
@@ -228,24 +228,24 @@
           reference: reference,
           tags: tags
         };
-        return post('/v1/users/' + fromUserUuid + '/wallets/' + fromWalletUuid + '/transfer/' +
+        return post('/users/' + fromUserUuid + '/wallets/' + fromWalletUuid + '/transfer/' +
             toUserUuid + '/' + toWalletUuid, body)
           .then(handleResponse)
           .catch(handleError);
       },
       multiWalletTransfer: function(transactions) {
-        return post('/v1/multi-wallets-transaction', transactions)
+        return post('/multi-wallets-transaction', transactions)
           .then(handleResponse)
           .catch(handleError);
       },
       getHealth: function() {
-        return get('/v1/health')
+        return get('/health')
           .then(handleResponse)
           .catch(handleError);
       },
       getSummary: function(summaryOptions) {
         debug('getSummary() options: %o', summaryOptions);
-        var pathAndQuerystring = '/v1/summary/' + summaryOptions.currency;
+        var pathAndQuerystring = '/summary/' + summaryOptions.currency;
         if(summaryOptions.tag) {
           pathAndQuerystring += '?tag=' + summaryOptions.tag;
         }
@@ -260,12 +260,12 @@
           .catch(handleError);
       },
       getBrand: function(brandUuid) {
-        return get('/v1/brands/' + brandUuid)
+        return get('/brands/' + brandUuid)
           .then(handleResponse)
           .catch(handleError);
       },
       postBrand: function(brand) {
-        return post('/v1/brands')
+        return post('/brands')
           .then(handleResponse)
           .catch(handleError);
       },
