@@ -78,11 +78,12 @@
     }
 
     return {
-      createUser: function(username, password, passwordConfirmation) {
+      createUser: function(username, password, passwordConfirmation, brandUuid) {
         var body = {
           username: username,
           password: password,
-          passwordConfirmation: passwordConfirmation
+          passwordConfirmation: passwordConfirmation,
+          brandUuid: brandUuid
         };
         return post('/users', body)
           .then(handleResponse)
