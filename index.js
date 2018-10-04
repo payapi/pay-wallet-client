@@ -188,12 +188,12 @@
           .catch(handleError);
       },
       getWalletTransactions: function(userUuid, walletUuid, page, pageSize, sortDirection) {
-        let path = '/v1/users/' + userUuid + '/wallets/' + walletUuid + '/transactions';
+        let path = '/users/' + userUuid + '/wallets/' + walletUuid + '/transactions';
         path+= page ? (path.indexOf('?') >= 0 ? '&' : '?') + 'page='+page : '';
         path+= pageSize ? (path.indexOf('?') >= 0 ? '&' : '?') + 'pageSize='+pageSize : '';
         path+= sortDirection ? (path.indexOf('?') >= 0 ? '&' : '?') + 'sortDirection='+sortDirection : '';
 
-        return get('/users/' + userUuid + '/wallets/' + walletUuid + '/transactions')
+        return get(path)
           .then(handleResponse)
           .catch(handleError);
       },
