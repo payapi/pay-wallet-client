@@ -231,6 +231,16 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      withdraw: function(userUuid, walletUuid, amount, currency, reference) {
+        var body = {
+          amount: amount,
+          currency: currency,
+          reference: reference
+        };
+        return post('/users/' + userUuid + '/wallets/' + walletUuid + '/withdraw', body)
+          .then(handleResponse)
+          .catch(handleError);
+      },
       transfer: function(fromUserUuid, fromWalletUuid, toUserUuid, toWalletUuid, amount, currency, reference, tags) {
         var body = {
           amount: amount,
