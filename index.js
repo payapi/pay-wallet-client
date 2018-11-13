@@ -231,11 +231,12 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      withdraw: function(userUuid, walletUuid, amount, currency, reference) {
+      withdraw: function(userUuid, walletUuid, amount, currency, reference, extraData) {
         var body = {
           amount: amount,
           currency: currency,
-          reference: reference
+          reference: reference,
+          extraData: extraData
         };
         return post('/users/' + userUuid + '/wallets/' + walletUuid + '/withdraw', body)
           .then(handleResponse)
