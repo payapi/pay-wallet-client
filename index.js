@@ -221,21 +221,24 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      deposit: function(userUuid, walletUuid, amount, currency, reference) {
+      deposit: function(userUuid, walletUuid, amount, currency, reference, tags, extraData) {
         var body = {
           amount: amount,
           currency: currency,
-          reference: reference
+          reference: reference,
+          tags: tags,
+          extraData: extraData
         };
         return post('/users/' + userUuid + '/wallets/' + walletUuid + '/deposit', body)
           .then(handleResponse)
           .catch(handleError);
       },
-      withdraw: function(userUuid, walletUuid, amount, currency, reference, extraData) {
+      withdraw: function(userUuid, walletUuid, amount, currency, reference, tags, extraData) {
         var body = {
           amount: amount,
           currency: currency,
           reference: reference,
+          tags: tags,
           extraData: extraData
         };
         return post('/users/' + userUuid + '/wallets/' + walletUuid + '/withdraw', body)
