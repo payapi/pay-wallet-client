@@ -268,7 +268,6 @@
           .catch(handleError);
       },
       getSummary: function(summaryOptions) {
-        debug('getSummary() options: %o', summaryOptions);
         var pathAndQuerystring = '/summary/' + summaryOptions.currency;
         if(summaryOptions.tag) {
           pathAndQuerystring += '?tag=' + summaryOptions.tag;
@@ -277,8 +276,15 @@
           pathAndQuerystring += (pathAndQuerystring.indexOf('?')>=0 ? '&' : '?') +
             'toWalletUuid=' + summaryOptions.toWalletUuid;
         }
+        if(summaryOptions.from) {
+          pathAndQuerystring += (pathAndQuerystring.indexOf('?')>=0 ? '&' : '?') +
+            'from=' + summaryOptions.from;
+        }
+        if(summaryOptions.to) {
+          pathAndQuerystring += (pathAndQuerystring.indexOf('?')>=0 ? '&' : '?') +
+            'to=' + summaryOptions.to;
+        }
 
-        debug('pathAndQuerystring: %s', pathAndQuerystring);
         return get(pathAndQuerystring)
           .then(handleResponse)
           .catch(handleError);
