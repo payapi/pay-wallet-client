@@ -187,11 +187,12 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      getWalletTransactions: function(userUuid, walletUuid, page, pageSize, sortDirection) {
+      getWalletTransactions: function(userUuid, walletUuid, page, pageSize, sortDirection, search) {
         let path = '/users/' + userUuid + '/wallets/' + walletUuid + '/transactions';
         path+= page ? (path.indexOf('?') >= 0 ? '&' : '?') + 'page='+page : '';
         path+= pageSize ? (path.indexOf('?') >= 0 ? '&' : '?') + 'pageSize='+pageSize : '';
         path+= sortDirection ? (path.indexOf('?') >= 0 ? '&' : '?') + 'sortDirection='+sortDirection : '';
+        path+= search ? (path.indexOf('?') >= 0 ? '&' : '?') + 'search='+search : '';
 
         return get(path)
           .then(handleResponse)
