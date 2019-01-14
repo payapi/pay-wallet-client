@@ -198,11 +198,12 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      getUserTransactions: function(userUuid, direction) {
+      getUserTransactions: function(userUuid, pdirection, search) {
         var path = '/users/' + userUuid + '/transactions';
-        if(direction === 'incoming' || direction === 'outgoing') {
-          path = path + '?direction=' + direction;
-        }
+        path += (direction === 'incoming' || direction === 'outgoing') ?
+          (path.indexOf('?') >= 0 ? '&' : '?') + 'direction='+direction : '';
+        path += search ? (path.indexOf('?') >= 0 ? '&' : '?') + 'search='+search : '';
+
         return get(path)
           .then(handleResponse)
           .catch(handleError);
