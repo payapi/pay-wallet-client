@@ -301,6 +301,17 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      verifyUserPinCode: function(brandUuid, username, pinCode) {
+        var body = {
+          brandUuid: brandUuid,
+          username: username,
+          pinCode: pinCode
+        };
+
+        return post('/verify/pinCode', body)
+          .then(handleResponse)
+          .catch(handleError);
+      }
     };
   };
 }());
