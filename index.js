@@ -301,6 +301,16 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      postConfig: function(userUuid, pinCode, enablePinCodeAccess) {
+        var body = {
+          enablePinCodeAccess: enablePinCodeAccess,
+          pinCode: pinCode
+        };
+
+        return post('/v1/users/'+userUuid+'/config', body)
+          .then(handleResponse)
+          .catch(handleError);
+      },
       verifyUserPinCode: function(brandUuid, username, pinCode) {
         var body = {
           brandUuid: brandUuid,
