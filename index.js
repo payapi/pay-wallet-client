@@ -307,7 +307,7 @@
           pinCode: pinCode
         };
 
-        return post('/v1/users/'+userUuid+'/config', body)
+        return post('/users/'+userUuid+'/config', body)
           .then(handleResponse)
           .catch(handleError);
       },
