@@ -171,7 +171,7 @@
         var body = {
           userUuids: userUuids
         };
-        return get('/v1/users/batch/wallets')
+        return get('/users/batch/wallets')
           .then(handleResponse)
           .catch(handleError);
       },
