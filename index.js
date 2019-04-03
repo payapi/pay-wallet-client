@@ -167,6 +167,14 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      findUserBatchWallets: function(userUuids) {
+        var body = {
+          userUuids: userUuids
+        };
+        return get('/v1/users/batch/wallets')
+          .then(handleResponse)
+          .catch(handleError);
+      },
       getUserWallet: function(userUuid, walletUuid) {
         return get('/users/' + userUuid + '/wallets/' + walletUuid)
           .then(handleResponse)
