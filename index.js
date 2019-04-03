@@ -171,7 +171,7 @@
         var body = {
           userUuids: userUuids
         };
-        return get('/users/batch/wallets')
+        return post('/users/batch/wallets', body)
           .then(handleResponse)
           .catch(handleError);
       },
