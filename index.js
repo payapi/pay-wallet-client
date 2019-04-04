@@ -162,16 +162,19 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      createUserBatchWallets: function(newUsersWallets) {
+        var body = newUsersWallets;
+        return post('/users/batch/wallets', body)
+          .then(handleResponse)
+          .catch(handleError);
+      },
       getWallets: function(userUuid) {
         return get('/users/' + userUuid + '/wallets')
           .then(handleResponse)
           .catch(handleError);
       },
       findUserBatchWallets: function(userUuids) {
-        var body = {
-          userUuids: userUuids
-        };
-        return post('/users/batch/wallets', body)
+        return get('/users/batch/wallets?userUuids='+ userUuids)
           .then(handleResponse)
           .catch(handleError);
       },
