@@ -303,6 +303,18 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      getBulkSummary: function(summaryOptions) {
+        var body = {
+          tag: summaryOptions.tag,
+          from: summaryOptions.from,
+          to: summaryOptions.to,
+          toWalletUuids: summaryOptions.toWalletUuids
+        };
+
+        return post('/summary/' + summaryOptions.currency, body)
+          .then(handleResponse)
+          .catch(handleError);
+      },
       getBrand: function(brandUuid) {
         return get('/brands/' + brandUuid)
           .then(handleResponse)
