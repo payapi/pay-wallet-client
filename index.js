@@ -174,7 +174,8 @@
           .catch(handleError);
       },
       findUserBatchWallets: function(userUuids) {
-        return get('/users/batch/wallets?userUuids='+ userUuids)
+        var body = { userUuids: userUuids };
+        return post('/users/batch/wallets/list', body)
           .then(handleResponse)
           .catch(handleError);
       },
