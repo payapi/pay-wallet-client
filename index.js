@@ -29,7 +29,7 @@
         resolveWithFullResponse: restParams.resolveWithFullResponse,
         body: restParams.body,
         json: true,
-        timeout: 5000,
+        timeout: 30000,
         agentOptions: agentOptions,
         headers: headers
       };
