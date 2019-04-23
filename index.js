@@ -220,6 +220,12 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      getUserBatchTransactions: function(userUuids) {
+        var body = { userUuids: userUuids };
+        return post('/users/batch/transactions', body)
+          .then(handleResponse)
+          .catch(handleError);
+      },
       findOrCreateByUsername: function(username) {
         return post('/users/findByUsername/' + username, {})
           .then(handleResponse)
