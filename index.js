@@ -210,7 +210,7 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      getUserTransactions: function(userUuid, pdirection, search) {
+      getUserTransactions: function(userUuid, direction, search) {
         var path = '/users/' + userUuid + '/transactions';
         path += (direction === 'incoming' || direction === 'outgoing') ?
           (path.indexOf('?') >= 0 ? '&' : '?') + 'direction='+direction : '';
