@@ -351,6 +351,18 @@
         return post('/verify/pinCode', body)
           .then(handleResponse)
           .catch(handleError);
+      },
+      postUserFace: function(userUuid, file) {
+        var body = { file: file };
+
+        return post('/users/' + userUuid + '/face', body)
+          .then(handleResponse)
+          .catch(handleError);
+      },
+      deleteUserFaceIds: function(userUuid) {
+        return post('/users/' + userUuid + '/face/remove')
+          .then(handleResponse)
+          .catch(handleError);
       }
     };
   };
