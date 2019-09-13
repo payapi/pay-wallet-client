@@ -113,10 +113,10 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      loginWithFace: function(loginParams) {
+      loginWithFace: function(brandUuid, faceId) {
         var body = {
-          brandUuid: loginParams.brandUuid,
-          faceId: loginParams.faceId
+          brandUuid: brandUuid,
+          faceId: faceId
         };
         return post('/login/face', body)
           .then(handleResponse)
