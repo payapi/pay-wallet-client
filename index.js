@@ -113,6 +113,15 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      loginWithFace: function(loginParams) {
+        var body = {
+          brandUuid: loginParams.brandUuid,
+          faceId: loginParams.faceId
+        };
+        return post('/login/face', body)
+          .then(handleResponse)
+          .catch(handleError);
+      },
       forgot: function(username, brandUuid) {
         var body = {
           username: username,
