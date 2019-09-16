@@ -379,7 +379,7 @@
           .catch(handleError);
       },
       getTwoFactorAuth: function(userUuid) {
-        return get('/v1/users/' + userUuid + '/config/twoFactorAuth')
+        return get('/users/' + userUuid + '/config/twoFactorAuth')
           .then(handleResponse)
           .catch(handleError);
       },
@@ -389,7 +389,7 @@
           otpToken: otpToken
         };
 
-        return post('/v1/users/' + userUuid + '/config/twoFactorAuth', body)
+        return post('/users/' + userUuid + '/config/twoFactorAuth', body)
           .then(handleResponse)
           .catch(handleError);
       },
