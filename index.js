@@ -114,12 +114,12 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      loginWithFace: function(brandUuid, faceId) {
+      recognizeFace: function(image, brandUuid) {
         var body = {
           brandUuid: brandUuid,
-          faceId: faceId
+          image: image
         };
-        return post('/login/face', body)
+        return post('/users/recognize/face', body)
           .then(handleResponse)
           .catch(handleError);
       },
@@ -393,7 +393,7 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      postUserFace: function(userUuid, file) {
+      registerFace: function(userUuid, file) {
         var body = { file: file };
 
         return post('/users/' + userUuid + '/face', body)
