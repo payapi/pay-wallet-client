@@ -4,8 +4,7 @@
   var debug = require('debug')('pay-wallet:client');
 
   module.exports = function PayWalletClient(params) {
-    var brandId = params.brandId;
-    var uri = params.uri;
+    var uri = params.api ? params.uri + '/v1' : params.uri;
     var authorizationToken = params.authorizationToken;
     var agentOptions = params.agentOptions;
     var headers = {
@@ -107,7 +106,9 @@
           username: loginParams.username,
           password: loginParams.password,
           clientToken: loginParams.clientToken,
-          brandUuid: loginParams.brandUuid
+          brandUuid: loginParams.brandUuid,
+          captcha: loginParams.captcha,
+          otpToken: loginParams.otpToken
         };
         return post('/login', body)
           .then(handleResponse)
@@ -140,6 +141,17 @@
         };
 
         return post('/reset', body)
+          .then(handleResponse)
+          .catch(handleError);
+      },
+      passwordChange: function(currentPassword, password, passwordConfirmation) {
+        var body = {
+          currentPassword: currentPassword,
+          password: password,
+          passwordConfirmation: passwordConfirmation
+        };
+
+        return post('/password/change', body)
           .then(handleResponse)
           .catch(handleError);
       },
@@ -340,6 +352,11 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      getConfig: function(userUuid) {
+        return get('/users/' + userUuid + '/config')
+          .then(handleResponse)
+          .catch(handleError);
+      },
       postConfig: function(userUuid, pinCode, enablePinCodeAccess) {
         var body = {
           enablePinCodeAccess: enablePinCodeAccess,
@@ -358,6 +375,21 @@
         };
 
         return post('/verify/pinCode', body)
+          .then(handleResponse)
+          .catch(handleError);
+      },
+      getTwoFactorAuth: function(userUuid) {
+        return get('/v1/users/' + userUuid + '/config/twoFactorAuth')
+          .then(handleResponse)
+          .catch(handleError);
+      },
+      postTwoFactorAuth: function(userUuid, otpToken, enableTwoFactorAuth) {
+        var body = {
+          enableTwoFactorAuth: enableTwoFactorAuth,
+          otpToken: otpToken
+        };
+
+        return post('/v1/users/' + userUuid + '/config/twoFactorAuth', body)
           .then(handleResponse)
           .catch(handleError);
       },
