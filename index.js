@@ -400,8 +400,8 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      deleteUserFaceIds: function(userUuid) {
-        return post('/users/' + userUuid + '/face/remove')
+      deleteFaces: function(userUuid) {
+        return post('/users/' + userUuid + '/face/delete')
           .then(handleResponse)
           .catch(handleError);
       }
