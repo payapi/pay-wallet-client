@@ -406,7 +406,7 @@
           .catch(handleError);
       },
       registerPin: function(userUuid, pinCode) {
-        return postConfig(userUuid, pinCode, true);
+        return this.postConfig(userUuid, pinCode, true);
       }
     };
   };
