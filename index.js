@@ -393,8 +393,8 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      registerFace: function(userUuid, file) {
-        var body = { file: file };
+      registerFace: function(userUuid, image) {
+        var body = { image: image };
 
         return post('/users/' + userUuid + '/face', body)
           .then(handleResponse)
@@ -404,6 +404,9 @@
         return post('/users/' + userUuid + '/face/delete')
           .then(handleResponse)
           .catch(handleError);
+      },
+      registerPin: function(userUuid, pinCode) {
+        return postConfig(userUuid, pinCode, true);
       }
     };
   };
