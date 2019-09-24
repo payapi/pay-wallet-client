@@ -126,6 +126,17 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      loginWithFaceAndPin: function(image, pinCode, brandUuid) {
+        var body = {
+          image: image,
+          pinCode: pinCode,
+          brandUuid: brandUuid
+        };
+
+        return post('/login/face/pin', body)
+          .then(handleResponse)
+          .catch(handleError);
+      },
       recognizeFace: function(image, brandUuid) {
         var body = {
           brandUuid: brandUuid,
