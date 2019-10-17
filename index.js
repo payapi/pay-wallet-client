@@ -243,22 +243,26 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      getWalletTransactions: function(userUuid, walletUuid, page, pageSize, sortDirection, search) {
+      getWalletTransactions: function(userUuid, walletUuid, page, pageSize, sortDirection, search, from, to) {
         let path = '/users/' + userUuid + '/wallets/' + walletUuid + '/transactions';
         path+= page ? (path.indexOf('?') >= 0 ? '&' : '?') + 'page='+page : '';
         path+= pageSize ? (path.indexOf('?') >= 0 ? '&' : '?') + 'pageSize='+pageSize : '';
         path+= sortDirection ? (path.indexOf('?') >= 0 ? '&' : '?') + 'sortDirection='+sortDirection : '';
         path+= search ? (path.indexOf('?') >= 0 ? '&' : '?') + 'search='+search : '';
+        path+= from ? (path.indexOf('?') >= 0 ? '&' : '?') + 'from=' + from : '';
+        path+= to ? (path.indexOf('?') >= 0 ? '&' : '?') + 'to=' + to : '';
 
         return get(path)
           .then(handleResponse)
           .catch(handleError);
       },
-      getUserTransactions: function(userUuid, direction, search) {
+      getUserTransactions: function(userUuid, direction, search, from, to) {
         var path = '/users/' + userUuid + '/transactions';
         path += (direction === 'incoming' || direction === 'outgoing') ?
           (path.indexOf('?') >= 0 ? '&' : '?') + 'direction='+direction : '';
         path += search ? (path.indexOf('?') >= 0 ? '&' : '?') + 'search='+search : '';
+        path += from ? (path.indexOf('?') >= 0 ? '&' : '?') + 'from=' + from : '';
+        path += to ? (path.indexOf('?') >= 0 ? '&' : '?') + 'to=' + to : '';
 
         return get(path)
           .then(handleResponse)
