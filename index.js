@@ -146,6 +146,15 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      isRecognizedFace: function(image, brandUuid) {
+        var body = {
+          brandUuid: brandUuid,
+          image: image
+        };
+        return post('/users/recognized/face', body)
+          .then(handleResponse)
+          .catch(handleError);
+      },
       forgot: function(username, brandUuid) {
         var body = {
           username: username,
