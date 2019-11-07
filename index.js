@@ -137,19 +137,21 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      recognizeFace: function(image, brandUuid) {
+      recognizeFace: function(image, brandUuid, threshold) {
         var body = {
           brandUuid: brandUuid,
-          image: image
+          image: image,
+          threshold: threshold
         };
         return post('/users/recognize/face', body)
           .then(handleResponse)
           .catch(handleError);
       },
-      isRecognizedFace: function(image, brandUuid) {
+      isRecognizedFace: function(image, brandUuid, threshold) {
         var body = {
           brandUuid: brandUuid,
-          image: image
+          image: image,
+          threshold: threshold
         };
         return post('/users/recognized/face', body)
           .then(handleResponse)
