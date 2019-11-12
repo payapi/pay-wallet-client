@@ -146,7 +146,7 @@
 
         return post('/login/face', body)
           .then(handleResponse)
-          .then(handleError);
+          .catch(handleError);
       },
       recognizeFace: function(image, brandUuid, threshold) {
         var body = {
