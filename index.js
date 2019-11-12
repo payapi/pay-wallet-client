@@ -137,6 +137,17 @@
           .then(handleResponse)
           .catch(handleError);
       },
+      loginWithFace: function(image, brandUuid, threshold) {
+        var body = {
+          image: image,
+          brandUuid: brandUuid,
+          threshold, threshold
+        };
+
+        return post('/login/face', body)
+          .then(handleResponse)
+          .then(handleError);
+      },
       recognizeFace: function(image, brandUuid, threshold) {
         var body = {
           brandUuid: brandUuid,
