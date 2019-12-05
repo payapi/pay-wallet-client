@@ -114,12 +114,13 @@
           .then(handleResponse)
           .catch(handleError);
       },
-      loginWithPin: function(userUuid, pinCode, accessToken, brandUuid) {
+      loginWithPin: function(userUuid, pinCode, accessToken, brandUuid, image) {
         var body = {
           userUuid: userUuid,
           pinCode: pinCode,
           accessToken: accessToken,
-          brandUuid: brandUuid
+          brandUuid: brandUuid,
+          image: image
         };
 
         return post('/login/pin', body)
